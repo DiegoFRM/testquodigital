@@ -1,0 +1,59 @@
+@import "~bootstrap/scss/bootstrap";
+
+$blue1: #0B2343;
+$fontSize:12px;
+$fontContent:14px;
+
+.App{
+  font-size:$fontSize ;
+  position:absolute;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(45deg,#caf9ff 20%,#FFF 100%);
+}
+
+
+.body-text{
+  font-size:$fontContent ;
+  color:white;
+
+}
+
+.nav-container--item{
+    list-style: none;
+  }
+
+  a {
+    color: black;
+    font-weight: 600;
+    font-size: 2em;
+    margin: 1em;
+}
+
+.menu-main .nav-link{
+  font-weight: 400 !important;
+}
+
+.fade-enter {
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 250ms ease-in;
+  }
+
+.navbar-nav .dropdown-menu {
+  margin-top:10px !important;
+}
+
+.navbar-light .navbar-toggler {
+  color: rgba(250, 250, 250, 1);
+  border-color: transparent;
+}
+
+.bg-color1{
+    background-color: white;
+}
