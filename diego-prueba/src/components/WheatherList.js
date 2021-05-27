@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import WeatherDetail from './WeatherDetail'
-import dummy from './dummy.json'
 import axios from 'axios';
 
 function WheatherList() {
-  const apiKey = 'd5f0701319f91aebc378dae0fc1f22e5';  
-  const [apiGet, setgetCallApi] = useState({ response: 'Ok' });
+  /*const apiKey = 'd5f0701319f91aebc378dae0fc1f22e5';  */
+  const [apiGet, setgetCallApi] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const [country] = useState(
+  const [errorAPI, setErrorAPI] = useState(null);
+  /*const [country] = useState(
     [ 
     'London',
     'Mexico',
@@ -16,11 +15,15 @@ function WheatherList() {
     'Canada',
     'Brazil'
     ]
-  )
+  )*/
   const [pokemons]  = useState(
     [
     'ditto',
-    'bulbasaur'
+    'bulbasaur',
+    'charmander',
+    'mewtwo',
+    'entei',
+    'blastoise'
     ]
   )
   const [getApi] = useState
@@ -31,7 +34,7 @@ function WheatherList() {
     }*/
     {
       type: 'get',
-      url:'https://pokeapi.co/api/v2/'
+      url:'https://pokeapi.co/api/v2/pokemon/'
     }
   );
   useEffect(() => {
@@ -40,29 +43,37 @@ function WheatherList() {
       setLoading(true);
 
          await axios.get(getApi.url + pokemon,{ crossdomain: true }).then((result)=>{
-        console.log("result",result);
-        return false;
-      setLoading(false);
-              }).catch((error)=>{
-        console.log("Error",error);
-      });
- 
-    };
+
+          setgetCallApi(prevState => [...prevState, {currentOrNewKey: result}]);
     
-    callApi(pokemons[0]);
-  });
+              }).catch((error)=>{
+        
+        setErrorAPI(error.response);
+      });
+      setLoading(false);
+    };
+    for(let i = 0;i<=pokemons.length-1;i++){
+    callApi(pokemons[i]);
+    }
+
+  }, [getApi.type, getApi.url,pokemons]);
 
   const ShowDetails = () => {
-    
+    if (loading === true) {
+      return <div>Cargando...</div>;
+    }
     let respuesta = {};
-    console.log(apiGet)
-    respuesta = apiGet;
 
+    if (errorAPI) {
+      respuesta = errorAPI;
+    } else {
+      respuesta = apiGet;
+    }
       /* 
       <WeatherDetail getData={respuesta.data} />
         */
-      return Array.from({length: Object.keys(dummy).length}, (item, index) => 
-      <WeatherDetail getData={dummy[country[index]]} key={index}/>
+      return Array.from({length: pokemons.length}, (item, index) => 
+      <WeatherDetail getData={[{res:respuesta,ind:index}]} key={index}/>
       );
 
   }
