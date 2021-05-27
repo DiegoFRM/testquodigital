@@ -17,21 +17,30 @@ function WheatherList() {
     'Brazil'
     ]
   )
+  const [pokemons]  = useState(
+    [
+    'ditto',
+    'bulbasaur'
+    ]
+  )
   const [getApi] = useState
   (
-    { 
+    /*{ 
       type: 'GET', 
       url: 'http://api.openweathermap.org/data/2.5/weather'
+    }*/
+    {
+      type: 'get',
+      url:'https://pokeapi.co/api/v2/'
     }
   );
   useEffect(() => {
     
-    const callApi = async (country) => {
+    const callApi = async (pokemon) => {
       setLoading(true);
 
-         await axios.get(getApi.url + '?q='+country+ '&APPID=' + apiKey,{ crossdomain: true }).then((result)=>{
+         await axios.get(getApi.url + pokemon,{ crossdomain: true }).then((result)=>{
         console.log("result",result);
-        setgetCallApi(result)
         return false;
       setLoading(false);
               }).catch((error)=>{
@@ -40,14 +49,11 @@ function WheatherList() {
  
     };
     
-    //callApi(country[0]);
+    callApi(pokemons[0]);
   });
 
   const ShowDetails = () => {
     
-    if (loading === true) {
-      return <div>Cargando...</div>;
-    }
     let respuesta = {};
     console.log(apiGet)
     respuesta = apiGet;
@@ -56,7 +62,7 @@ function WheatherList() {
       <WeatherDetail getData={respuesta.data} />
         */
       return Array.from({length: Object.keys(dummy).length}, (item, index) => 
-      <WeatherDetail getData={dummy[country[index]]}/>
+      <WeatherDetail getData={dummy[country[index]]} key={index}/>
       );
 
   }
