@@ -1,81 +1,74 @@
 import React, { useEffect, useState } from 'react';
 import WeatherDetail from './WeatherDetail'
+import dummy from './dummy.json'
 import axios from 'axios';
 
 function WheatherList() {
-  const [accesoAPI, setAccesoAPI] = useState({ tipo: 'GET', url: 'https://openweathermap.org/api' });
-  const [datos, setDatos] = useState({});
-  const [errorAPI, setErrorAPI] = useState(null);
+  const apiKey = 'd5f0701319f91aebc378dae0fc1f22e5';  
+  const [apiGet, setgetCallApi] = useState({ response: 'Ok' });
   const [loading, setLoading] = useState(false);
-  const [respuestaAPI, setRespuestaAPI] = useState({ respuesta: 'KO' });
- 
-  useEffect(() => {
-    const consultaAPI = async () => {
-      setErrorAPI(null);
-      setLoading(true);
- 
-      try {
-        // 'data' son los datos que se envían como request body
-        // Solo es válido para 'PUT', 'POST', 'DELETE y 'PATCH'
-        const consulta = await axios({ method: accesoAPI.tipo, url: accesoAPI.url, data: datos });
- 
-        setRespuestaAPI(consulta);
-      } catch (error) {
-        setErrorAPI(error.response);
-      }
- 
-      setLoading(false);
-    };
- 
-    consultaAPI();
-  }, [accesoAPI.tipo, accesoAPI.url, datos]);
- 
-  const handleClick = boton => {
-    if (boton === 'botonGet') {
-      setAccesoAPI({ tipo: 'GET', url: 'https://openweathermap.org/api' });
- 
-      // En un GET los datos serán ignorados, siempre mandaremos un objeto vacío
-      setDatos({});
-    } else if (boton === 'botonPost') {
-      setAccesoAPI({ tipo: 'POST', url: 'https://openweathermap.org/api' });
- 
-      setDatos({ datosUno: 'datosUno', datosDos: 'datosDos' });
+
+  const [country] = useState(
+    [ 
+    'London',
+    'Mexico',
+    ]
+  )
+  const [getApi] = useState
+  (
+    { 
+      type: 'GET', 
+      url: 'http://api.openweathermap.org/data/2.5/weather'
     }
-  };
+  );
+  useEffect(() => {
+    
+    const callApi = async (country) => {
+      setLoading(true);
+
+         await axios.get(getApi.url + '?q='+country+ '&APPID=' + apiKey,{ crossdomain: true }).then((result)=>{
+        console.log("result",result);
+        setgetCallApi(result)
+        return false;
+      setLoading(false);
+              }).catch((error)=>{
+        console.log("Error",error);
+      });
  
-  const MostrarRespuesta = () => {
+    };
+    
+    //callApi(country[0]);
+  });
+
+  const ShowDetails = () => {
+    
     if (loading === true) {
       return <div>Cargando...</div>;
     }
- 
     let respuesta = {};
- 
-    if (errorAPI) {
-      respuesta = errorAPI;
-    } else {
-      respuesta = respuestaAPI;
-    }
- 
-    return Object.keys(respuesta).map(key => {
-      return (
-        <div key={key}>
-          {key}: {JSON.stringify(respuesta[key])}
-        </div>
+    console.log(apiGet)
+    respuesta = apiGet;
+
+      /* 
+      <WeatherDetail getData={respuesta.data} />
+        */
+      return Array.from({length: Object.keys(dummy).length}, (item, index) => 
+      <WeatherDetail getData={dummy[country[index]]}/>
       );
-    });
-  };
- 
+
+  }
+
   return (
-    <>
-      <div>
-        <button onClick={() => handleClick('botonGet')} type="button">Consulta GET</button>
-        <button onClick={() => handleClick('botonPost')} type="button">Consulta POST</button>
-      </div>
-      <div>
-        <MostrarRespuesta />
-      </div>
-    </>
+    <div className='container col-12 w-100'>
+     
+    <div className="row col-12 text-center bg-color1 p-4 mb-1">
+        <div className="col-4">Nombre</div>
+        <div className="col-4">Clima</div>
+        <div className="col-4">Añadir a favoritos</div>
+    </div>
+    <ShowDetails/>
+    </div>
   );
-};
+}
 
 export default WheatherList;

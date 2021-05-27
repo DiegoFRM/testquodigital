@@ -1,0 +1,90 @@
+{
+    "London":{
+    "coord": {
+        "lon": -0.1257,
+        "lat": 51.5085
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "clear sky",
+            "icon": "01n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 281.39,
+        "feels_like": 280.94,
+        "temp_min": 278.81,
+        "temp_max": 283.12,
+        "pressure": 1018,
+        "humidity": 90
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 1.37,
+        "deg": 305,
+        "gust": 1.5
+    },
+    "clouds": {
+        "all": 7
+    },
+    "dt": 1622081320,
+    "sys": {
+        "type": 2,
+        "id": 2019646,
+        "country": "GB",
+        "sunrise": 1622087614,
+        "sunset": 1622145727
+    },
+    "timezone": 3600,
+    "id": 2643743,
+    "name": "London",
+    "cod": 200
+},
+"Mexico":{
+"coord": {
+    "lon": -0.1257,
+    "lat": 51.5085
+},
+"weather": [
+    {
+        "id": 800,
+        "main": "Clear",
+        "description": "Cloud Sky",
+        "icon": "01n"
+    }
+],
+"base": "stations",
+"main": {
+    "temp": 281.39,
+    "feels_like": 280.94,
+    "temp_min": 278.81,
+    "temp_max": 283.12,
+    "pressure": 1018,
+    "humidity": 90
+},
+"visibility": 10000,
+"wind": {
+    "speed": 1.37,
+    "deg": 305,
+    "gust": 1.5
+},
+"clouds": {
+    "all": 7
+},
+"dt": 1622081320,
+"sys": {
+    "type": 2,
+    "id": 2019646,
+    "country": "GB",
+    "sunrise": 1622087614,
+    "sunset": 1622145727
+},
+"timezone": 3600,
+"id": 2643743,
+"name": "Mexico",
+"cod": 200
+}
+}

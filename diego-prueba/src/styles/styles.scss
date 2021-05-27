@@ -1,7 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 
 $blue1: #0B2343;
-$bgsearch: #007CC2;
 $fontSize:12px;
 $fontContent:14px;
 
@@ -46,20 +45,15 @@ $fontContent:14px;
     transition: opacity 250ms ease-in;
   }
 
-.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
-  color: white;
-}
-
 .navbar-nav .dropdown-menu {
   margin-top:10px !important;
-}
-
-.vl {
-  border-left: 1px solid white;
-  height: 50px;
 }
 
 .navbar-light .navbar-toggler {
   color: rgba(250, 250, 250, 1);
   border-color: transparent;
+}
+
+.bg-color1{
+    background-color: white;
 }
