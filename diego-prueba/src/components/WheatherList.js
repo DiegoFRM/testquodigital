@@ -12,6 +12,9 @@ function WheatherList() {
     [ 
     'London',
     'Mexico',
+    'USA',
+    'Canada',
+    'Brazil'
     ]
   )
   const [getApi] = useState
