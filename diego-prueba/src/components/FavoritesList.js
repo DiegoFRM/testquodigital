@@ -31,12 +31,17 @@ function FavoritesList() {
 
   return (
     <div className='container col-12 w-100'>
-     
+     <button
+
+      className="btn btn-secondary">
+        Recargar
+      </button>
     <div className="row col-12 text-center bg-color1 p-4 mb-1">
         <div className="col-4">Nombre</div>
         <div className="col-4">Imagen</div>
         <div className="col-4">Eliminar de favoritos</div>
     </div>
+    
     <ShowDetails/>
     </div>
   );

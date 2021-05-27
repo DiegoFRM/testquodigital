@@ -1,4 +1,3 @@
-import WheatherList from '../components/WheatherList'
 import FavoritesList from '../components/FavoritesList'
 
 function Favorites() {

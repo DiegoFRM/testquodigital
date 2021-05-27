@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 function FavoriteItem(props) {
     const index = props.getData[0].ind;
-    
     console.log(props.getData[0].res[index])
     const [btnActive, setBtnState] = useState(false);
    
@@ -13,8 +12,6 @@ function FavoriteItem(props) {
     }
 
     
-    function searchFav(){
-    }
     function removerFav (element) {
         
         let getLocal = localStorage.getItem('pokemon');
@@ -25,6 +22,7 @@ function FavoriteItem(props) {
             let remove = newarray.indexOf(found)
             newarray.splice(remove, 1);
             }
+            
         }
 
         localStorage.setItem('pokemon',JSON.stringify(newarray))
